@@ -3,8 +3,8 @@ package com.wang.TeacherMicroservice.event;
 import lombok.Data;
 import lombok.Value;
 
-@Data
+@Value
 public class BlankpaperEvent {
-    private long examId;
-    private String blankpaperContent;
+    long examId;
+    String blankpaperContent;
 }

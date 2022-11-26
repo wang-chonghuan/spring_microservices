@@ -12,13 +12,14 @@ import java.util.stream.Collectors;
 public class BlankpaperService {
     private final BlankpaperPublisher blankpaperPublisher;
     public void createBlankpaper(QuestionListDTO questionListDTO) {
-        BlankpaperEvent event = new BlankpaperEvent();
-        event.setExamId(questionListDTO.getExamId());
-        event.setBlankpaperContent(questionListDTO
+        BlankpaperEvent event = new BlankpaperEvent(
+                questionListDTO.getExamId(),
+                questionListDTO
                         .getQuestionIdList()
                         .stream()
                         .map(String::valueOf)
-                        .collect(Collectors.joining(",")));
+                        .collect(Collectors.joining(","))
+        );
         blankpaperPublisher.publish(event);
     }
 }
