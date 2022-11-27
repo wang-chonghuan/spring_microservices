@@ -1,4 +1,4 @@
-package com.wang.teachermsrv.utils;
+package com.wang.studentmsrv.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

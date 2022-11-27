@@ -22,7 +22,7 @@ public class BlankpaperControllerTest {
     private MockMvc mockMvc;
 
     private final String blankpaperJson = "{\"examId\":1,\"questionSettingList\":[{\"questionId\":1,\"order\":1,\"mark\":2},{\"questionId\":2,\"order\":2,\"mark\":3},{\"questionId\":3,\"order\":3,\"mark\":5}]}";
-    
+
     @Test
     public void testCreateBlankpaper() throws Exception {
         ResultActions r = this.mockMvc.perform(post("http://localhost:8090/blankpaper")

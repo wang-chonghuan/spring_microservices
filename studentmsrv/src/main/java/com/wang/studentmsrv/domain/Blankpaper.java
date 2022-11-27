@@ -9,10 +9,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,10 +28,15 @@ import java.util.Map;
 @NoArgsConstructor
 public class Blankpaper {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
     private Long examId; // fk exam in teachermsrv
     @Type(type = "json")
     @Column(name = "paper_content", columnDefinition = "json")
     private Map<String,Object> paperContent = new HashMap<>();
+    public Blankpaper(long examId, Map<String,Object> paperContent) {
+        this.examId = examId;
+        this.paperContent = paperContent;
+    }
 }
