@@ -1,0 +1,29 @@
+server:
+  port: 8090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: TeacherMicroservice
+          uri: http://localhost:8092/
+          predicates:
+            - Path=/blankpaper,/blankpaper/**
+        - id: StudentMicroservice
+          uri: http://localhost:8091/
+          predicates:
+            - Path=/answeredpaper,/answeredpaper/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders:
+              - "*"
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "OPTIONS"
+# Uncomment the configuration below if you want to enable route matching logs
+logging:
+  level:
+    org.springframework.cloud.gateway.handler.predicate: trace
