@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AMQPConfiguration {
     @Bean
-    public TopicExchange blankpaperTopicExchange(
-            @Value("${amqp.exchange.blankpaper}") final String exchangeName) {
+    public TopicExchange createTopicExchange(
+            @Value("${amqp.exchange.teacher}") final String exchangeName) {
 
         return ExchangeBuilder.topicExchange(exchangeName).durable(true).build();
     }

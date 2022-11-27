@@ -14,30 +14,31 @@ import org.springframework.messaging.handler.annotation.support.MessageHandlerMe
 @Configuration
 public class AMQPConfiguration {
 
-    // gamification不需要交换机，但是也创建，这样就不用等multiplication启动后它才能启动了
+    // student不需要交换机，但是也创建，这样就不用等teacher启动后它才能启动了
     // 交换机的创建是幂等的，所以创建多次也没关系
     @Bean
-    public TopicExchange challengesTopicExchange(
-            @Value("${amqp.exchange.blankpaper}") final String exchangeName) {
-
+    public TopicExchange teacherExchange(@Value("${amqp.exchange.teacher}") final String exchangeName) {
         return ExchangeBuilder.topicExchange(exchangeName).durable(true).build();
     }
 
     @Bean
-    public Queue gamificationQueue(
-            @Value("${amqp.queue.blankpaper}") final String queueName) {
-
+    public Queue blankpaperQueue(@Value("${amqp.queue.blankpaper}") final String queueName) {
         return QueueBuilder.durable(queueName).build();
     }
 
     @Bean
-    public Binding correctBlankpaperBinding(
-            final Queue gamificationQueue,
-            final TopicExchange attemptsExchange) {
-        return BindingBuilder
-                .bind(gamificationQueue)
-                .to(attemptsExchange)
-                .with("blankpaper");
+    public Queue studentExamQueue(@Value("${amqp.queue.studentexam}") final String queueName) {
+        return QueueBuilder.durable(queueName).build();
+    }
+
+    @Bean
+    public Binding blankpaperBinding(final Queue blankpaperQueue, final TopicExchange teacherExchange) {
+        return BindingBuilder.bind(blankpaperQueue).to(teacherExchange).with("blankpaper.routingkey");
+    }
+
+    @Bean
+    public Binding studentExamBinding(final Queue studentExamQueue, final TopicExchange teacherExchange) {
+        return BindingBuilder.bind(studentExamQueue).to(teacherExchange).with("studentexam.routingkey");
     }
 
     @Bean

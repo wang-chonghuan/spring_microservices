@@ -8,7 +8,7 @@ spring:
         - id: TeacherMicroservice
           uri: http://localhost:8092/
           predicates:
-            - Path=/blankpaper,/blankpaper/**
+            - Path=/exam,/exam/**
         - id: StudentMicroservice
           uri: http://localhost:8091/
           predicates:

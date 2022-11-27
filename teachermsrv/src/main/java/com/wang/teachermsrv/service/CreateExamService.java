@@ -4,8 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wang.teachermsrv.domain.Question;
 import com.wang.teachermsrv.domain.dto.QuestionSetting;
 import com.wang.teachermsrv.domain.dto.QuestionSettingsDTO;
+import com.wang.teachermsrv.domain.dto.StudentsExamDTO;
 import com.wang.teachermsrv.domain.event.BlankpaperEvent;
+import com.wang.teachermsrv.domain.event.StudentsExamEvent;
 import com.wang.teachermsrv.repository.QuestionRepository;
+import com.wang.teachermsrv.service.publisher.BlankpaperPublisher;
+import com.wang.teachermsrv.service.publisher.StudentExamPublisher;
 import com.wang.teachermsrv.utils.AnyUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,12 +17,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class BlankpaperService {
+public class CreateExamService {
     private final BlankpaperPublisher blankpaperPublisher;
+    private final StudentExamPublisher studentExamPublisher;
     private final QuestionRepository questionRepository;
     public void createBlankpaper(QuestionSettingsDTO questionSettingsDTO) throws JsonProcessingException {
 
@@ -37,6 +41,10 @@ public class BlankpaperService {
                 questionSettingsDTO.getExamId(),
                 AnyUtil.jsonmapToJsonstr(qListJsonmap));
         blankpaperPublisher.publish(event);
+    }
+
+    public void registerStudentToExam(StudentsExamDTO dto) {
+        studentExamPublisher.publish(new StudentsExamEvent(dto.getExamId(), dto.getStudentIdList()));
     }
 
     public enum QListTag {
