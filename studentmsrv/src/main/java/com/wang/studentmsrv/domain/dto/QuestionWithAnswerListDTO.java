@@ -1,4 +1,4 @@
-package com.wang.studentmsrv.dto;
+package com.wang.studentmsrv.domain.dto;
 
 import lombok.Value;
 

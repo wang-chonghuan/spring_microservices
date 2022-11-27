@@ -1,6 +1,6 @@
 package com.wang.studentmsrv.controller;
 
-import com.wang.studentmsrv.dto.QuestionWithAnswerListDTO;
+import com.wang.studentmsrv.domain.dto.QuestionWithAnswerListDTO;
 import com.wang.studentmsrv.service.AnsweredpaperService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

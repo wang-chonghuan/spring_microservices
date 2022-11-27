@@ -1,6 +1,6 @@
 package com.wang.studentmsrv.service;
 
-import com.wang.studentmsrv.event.BlankpaperEvent;
+import com.wang.studentmsrv.domain.event.BlankpaperEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;

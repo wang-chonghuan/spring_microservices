@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wang</groupId>
-	<artifactId>Gateway</artifactId>
+	<artifactId>gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Gateway</name>
+	<name>gateway</name>
 	<description>spring cloud gateway for this msrvs</description>
 	<properties>
 		<java.version>17</java.version>

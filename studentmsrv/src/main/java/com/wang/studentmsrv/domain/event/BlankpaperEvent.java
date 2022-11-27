@@ -1,4 +1,4 @@
-package com.wang.studentmsrv.event;
+package com.wang.studentmsrv.domain.event;
 
 import lombok.Data;
 

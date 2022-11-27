@@ -1,6 +1,6 @@
 package com.wang.teachermsrv.service;
 
-import com.wang.teachermsrv.event.BlankpaperEvent;
+import com.wang.teachermsrv.domain.event.BlankpaperEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Value;
