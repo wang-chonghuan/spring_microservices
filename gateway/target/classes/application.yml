@@ -5,11 +5,11 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: TeacherMicroservice
+        - id: Mgtmsv
           uri: http://localhost:8092/
           predicates:
             - Path=/course,/course/**,/role,/role/**,/score,/score/**
-        - id: StudentMicroservice
+        - id: Exammsv
           uri: http://localhost:8091/
           predicates:
             - Path=/exam,/exam/**,/grade,/grade/**,/paper,/paper/**
