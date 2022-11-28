@@ -5,9 +5,8 @@ import lombok.Value;
 import java.util.List;
 
 @Value
-public class QuestionWithAnswerListDTO {
+public class AnswersDTO {
     long examId;
     long studentId;
-    List<Long> questionIdList;
-    List<String> answerList;
+    List<Answer> answerList;
 }

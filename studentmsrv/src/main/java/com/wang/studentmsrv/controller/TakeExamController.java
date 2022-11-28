@@ -1,7 +1,7 @@
 package com.wang.studentmsrv.controller;
 
-import com.wang.studentmsrv.domain.dto.QuestionWithAnswerListDTO;
-import com.wang.studentmsrv.service.AnsweredpaperService;
+import com.wang.studentmsrv.domain.dto.AnswersDTO;
+import com.wang.studentmsrv.service.TakeExamService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +14,12 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/answeredpaper")
-public class AnsweredpaperController {
-    private final AnsweredpaperService answeredpaperService;
+@RequestMapping("/takeexam")
+public class TakeExamController {
+    private final TakeExamService takeExamService;
 
-    @PostMapping
-    void postAnsweredpaper(@RequestBody @Valid QuestionWithAnswerListDTO aqListDTO) {
-        answeredpaperService.postAnsweredpaper(aqListDTO);
+    @PostMapping("/answer")
+    void postAnsweredPaper(@RequestBody @Valid AnswersDTO dto) {
+        takeExamService.saveAnsweredPaper(dto);
     }
 }

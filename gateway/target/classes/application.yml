@@ -12,7 +12,7 @@ spring:
         - id: StudentMicroservice
           uri: http://localhost:8091/
           predicates:
-            - Path=/answeredpaper,/answeredpaper/**
+            - Path=/takeexam,/takeexam/**
       globalcors:
         cors-configurations:
           '[/**]':

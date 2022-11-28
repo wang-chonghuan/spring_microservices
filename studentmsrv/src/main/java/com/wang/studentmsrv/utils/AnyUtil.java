@@ -38,7 +38,7 @@ public class AnyUtil {
         return jsonmap;
     }
 
-    public static Map<String, Object> objToJsonmap(Object obj) {
+    public static Map<String, Object> objectToJsonmap(Object obj) {
         ObjectMapper oMapper = new ObjectMapper();
         Map<String, Object> Jsonmap = oMapper.convertValue(obj, Map.class);
         return Jsonmap;
