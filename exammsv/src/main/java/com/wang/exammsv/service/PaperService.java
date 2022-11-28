@@ -7,6 +7,8 @@ import com.wang.exammsv.domain.dto.QuestionSetting;
 import com.wang.exammsv.domain.dto.QuestionSettingsDTO;
 import com.wang.exammsv.repository.BlankpaperRepository;
 import com.wang.exammsv.repository.QuestionRepository;
+import com.wang.exammsv.service.question.QuestionDecorator;
+import com.wang.exammsv.service.question.QuestionSettingDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +25,15 @@ public class PaperService {
 
     public void createBlankpaper(QuestionSettingsDTO dto) throws JsonProcessingException {
 
-        List<QuestionDecorator> qdList = new ArrayList<>();
+        List<QuestionSettingDecorator> qdList = new ArrayList<>();
 
         for(QuestionSetting qs: dto.getQuestionSettingList()) {
-            Question q = questionRepository.findById(qs.getQuestionId()).get();
-            QuestionDecorator qd = new QuestionDecorator(q, qs);
+            Question q = questionRepository.findById(qs.questionId).get();
+            QuestionSettingDecorator qd = new QuestionSettingDecorator(q, qs);
             qdList.add(qd);
         }
 
-        Map<String, Object> qListJsonmap = QuestionDecorator.questionDecoratorListToJsonmap(
+        Map<String, Object> qListJsonmap = QuestionSettingDecorator.questionDecoratorListToJsonmap(
                 qdList, QuestionListTag.blank_question_list.name());
         // aString = anIntList.stream().map(String::valueOf).collect(Collectors.joining(","))
 

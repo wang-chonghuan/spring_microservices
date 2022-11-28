@@ -22,8 +22,8 @@ public class ControllerTests {
     public void testRegisterExam() throws Exception {
         String url = "http://localhost:8090/course/registerexam";
         String content = "{\"examId\":1,\"studentIdList\":[1,2]}";
-        ResultActions r = this.mockMvc.perform(
-                post(url).content(content).header(HttpHeaders.CONTENT_TYPE, "application/json"));
-        r = r.andDo(print()).andExpect(status().isOk());
+        mockMvc.perform(post(url).content(content)
+                .header(HttpHeaders.CONTENT_TYPE, "application/json"))
+                .andDo(print()).andExpect(status().isOk());
     }
 }

@@ -18,7 +18,7 @@ public class GradeController {
     private GradeService gradeService;
 
     @RequestMapping(value="/viewanswers", method= RequestMethod.GET)
-    public ResponseEntity<?> viewpaper(@RequestParam long studentId, @RequestParam long examId) throws Exception {
+    public ResponseEntity<?> viewAnswers(@RequestParam long studentId, @RequestParam long examId) throws Exception {
         return ResponseEntity.ok().body("");
     }
 
@@ -28,8 +28,9 @@ public class GradeController {
     }
 
     @RequestMapping(value="/auto", method= RequestMethod.GET)
-    public ResponseEntity<?> auto(@RequestParam long studentId, @RequestParam long examId) throws Exception {
-        return ResponseEntity.ok().body("");
+    public ResponseEntity<?> auto(@RequestParam long examId) throws Exception {
+        gradeService.autoGrade(examId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     // modify all the scores of an exam, with an expression like: 50 10 0.6 + *

@@ -1,6 +1,8 @@
 package com.wang.exammsv.controller;
 
+import com.wang.exammsv.domain.Blankpaper;
 import com.wang.exammsv.domain.dto.AnswersDTO;
+import com.wang.exammsv.repository.BlankpaperRepository;
 import com.wang.exammsv.service.ExamService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -17,10 +20,12 @@ import javax.validation.Valid;
 public class ExamController {
 
     private final ExamService examService;
+    private final BlankpaperRepository blankpaperRepository;
 
     @RequestMapping(value="/fetchblankpaper", method= RequestMethod.GET)
-    public ResponseEntity<?> fetchBlankpaper(@RequestParam long studentId, @RequestParam long examId) throws Exception {
-        return ResponseEntity.ok().body("");
+    public ResponseEntity<?> fetchBlankpaper(@RequestParam long paperId) throws Exception {
+        Optional<Blankpaper> paper = blankpaperRepository.findById(paperId);
+        return ResponseEntity.ok().body(paper.get().getPaperContent());
     }
 
     @PostMapping("/postanswers")
@@ -28,6 +33,4 @@ public class ExamController {
         examService.saveAnsweredPaper(dto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-
 }

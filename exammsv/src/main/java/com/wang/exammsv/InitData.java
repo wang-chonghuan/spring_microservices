@@ -26,9 +26,9 @@ public class InitData {
 
     public void init() throws JsonProcessingException {
         // set students to exam1
-        StudentExamResult studentExamResult1 = new StudentExamResult(1L, 1L);
-        StudentExamResult studentExamResult2 = new StudentExamResult(2L, 1L);
-        studentExamResultRepository.saveAll(Arrays.asList(studentExamResult1, studentExamResult2));
+        //StudentExamResult studentExamResult1 = new StudentExamResult(1L, 1L);
+        //StudentExamResult studentExamResult2 = new StudentExamResult(2L, 1L);
+        //studentExamResultRepository.saveAll(Arrays.asList(studentExamResult1, studentExamResult2));
 
         // set a new record to Question
         // conver json to java format string by using this website: https://tools.knowledgewalls.com/json-to-string

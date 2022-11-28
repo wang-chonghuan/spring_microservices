@@ -19,16 +19,19 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    // todo
     @RequestMapping(value="/createcourse", method= RequestMethod.POST)
     public ResponseEntity<?> createCourse(@RequestBody Object dto) throws Exception {
         return ResponseEntity.ok().body("");
     }
 
+    // todo
     @RequestMapping(value="/createexam", method= RequestMethod.POST)
     public ResponseEntity<?> createExam(@RequestBody Object dto) throws Exception {
         return ResponseEntity.ok().body("");
     }
 
+    // todo
     @RequestMapping(value="/registercourse", method= RequestMethod.POST)
     public ResponseEntity<?> registerCourse(@RequestBody Object dto) throws Exception {
         return ResponseEntity.ok().body("");

@@ -17,11 +17,13 @@ import javax.validation.Valid;
 public class PaperController {
     private final PaperService paperService;
 
+    // todo
     @RequestMapping(value="/createquestion", method= RequestMethod.POST)
     public ResponseEntity<?> createQuestion(@RequestBody Object dto) throws Exception {
         return ResponseEntity.ok().body("");
     }
 
+    // todo
     @RequestMapping(value="/viewquestions", method= RequestMethod.GET)
     public ResponseEntity<?> viewQuestions(@RequestParam long studentId, @RequestParam long examId) throws Exception {
         return ResponseEntity.ok().body("");
