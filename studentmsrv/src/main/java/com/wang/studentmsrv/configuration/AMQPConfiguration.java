@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,13 +18,13 @@ public class AMQPConfiguration {
     // student不需要交换机，但是也创建，这样就不用等teacher启动后它才能启动了
     // 交换机的创建是幂等的，所以创建多次也没关系
     @Bean
-    public TopicExchange teacherExchange(@Value("${amqp.exchange.teacher}") final String exchangeName) {
+    public TopicExchange mgtTopicExchange(@Value("${amqp.exchange.mgt}") final String exchangeName) {
         return ExchangeBuilder.topicExchange(exchangeName).durable(true).build();
     }
 
     @Bean
-    public Queue blankpaperQueue(@Value("${amqp.queue.blankpaper}") final String queueName) {
-        return QueueBuilder.durable(queueName).build();
+    public TopicExchange examTopicExchange(@Value("${amqp.exchange.exam}") final String exchangeName) {
+        return ExchangeBuilder.topicExchange(exchangeName).durable(true).build();
     }
 
     @Bean
@@ -32,13 +33,8 @@ public class AMQPConfiguration {
     }
 
     @Bean
-    public Binding blankpaperBinding(final Queue blankpaperQueue, final TopicExchange teacherExchange) {
-        return BindingBuilder.bind(blankpaperQueue).to(teacherExchange).with("blankpaper.routingkey");
-    }
-
-    @Bean
-    public Binding studentExamBinding(final Queue studentExamQueue, final TopicExchange teacherExchange) {
-        return BindingBuilder.bind(studentExamQueue).to(teacherExchange).with("studentexam.routingkey");
+    public Binding studentExamBinding(final Queue studentExamQueue, final TopicExchange mgtTopicExchange) {
+        return BindingBuilder.bind(studentExamQueue).to(mgtTopicExchange).with("studentexam.routingkey");
     }
 
     @Bean
@@ -59,5 +55,8 @@ public class AMQPConfiguration {
         return factory;
     }
 
-
+    @Bean
+    public Jackson2JsonMessageConverter producer2JacksonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
 }

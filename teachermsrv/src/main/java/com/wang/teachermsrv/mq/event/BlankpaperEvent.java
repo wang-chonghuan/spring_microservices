@@ -1,4 +1,4 @@
-package com.wang.teachermsrv.domain.event;
+package com.wang.teachermsrv.mq.event;
 
 import lombok.Value;
 

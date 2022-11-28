@@ -8,11 +8,11 @@ spring:
         - id: TeacherMicroservice
           uri: http://localhost:8092/
           predicates:
-            - Path=/exam,/exam/**
+            - Path=/course,/course/**,/role,/role/**,/score,/score/**
         - id: StudentMicroservice
           uri: http://localhost:8091/
           predicates:
-            - Path=/takeexam,/takeexam/**
+            - Path=/exam,/exam/**,/grade,/grade/**,/paper,/paper/**
       globalcors:
         cors-configurations:
           '[/**]':

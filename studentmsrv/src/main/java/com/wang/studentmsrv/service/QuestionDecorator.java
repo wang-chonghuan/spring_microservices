@@ -1,7 +1,7 @@
-package com.wang.teachermsrv.service;
+package com.wang.studentmsrv.service;
 
-import com.wang.teachermsrv.domain.Question;
-import com.wang.teachermsrv.domain.dto.QuestionSetting;
+import com.wang.studentmsrv.domain.Question;
+import com.wang.studentmsrv.domain.dto.QuestionSetting;
 import lombok.Data;
 
 import java.util.*;

@@ -1,6 +1,6 @@
-package com.wang.teachermsrv.repository;
+package com.wang.studentmsrv.repository;
 
-import com.wang.teachermsrv.domain.Question;
+import com.wang.studentmsrv.domain.Question;
 import org.springframework.data.repository.CrudRepository;
 
 public interface QuestionRepository extends CrudRepository<Question, Long> {

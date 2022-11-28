@@ -1,4 +1,4 @@
-package com.wang.teachermsrv.domain;
+package com.wang.studentmsrv.domain;
 
 import com.sun.istack.NotNull;
 import com.vladmihalcea.hibernate.type.json.JsonType;

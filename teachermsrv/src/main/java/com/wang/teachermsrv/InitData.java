@@ -1,7 +1,6 @@
 package com.wang.teachermsrv;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wang.teachermsrv.domain.*;
 import com.wang.teachermsrv.repository.*;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +21,6 @@ public class InitData {
     private TeacherRepository teacherRepository;
     @Autowired
     private StudentRepository studentRepository;
-    @Autowired
-    private QuestionRepository questionRepository;
 
     // insert basic records for developing and testing
     public void init() throws JsonProcessingException {
@@ -59,21 +56,5 @@ public class InitData {
         examRepository.save(exam1withoutStudentsAndPaper);
         exam1withoutStudentsAndPaper.setLocation("CS429");
         Exam queryExam1 = examRepository.save(exam1withoutStudentsAndPaper);
-
-        // set a new record to Question
-        // conver json to java format string by using this website: https://tools.knowledgewalls.com/json-to-string
-        Map<String, Object> questionStatement1 = new ObjectMapper().readValue(
-                "{\"statement\":\"which year is golang first released?\",\"choices\":[\"A. 2010\",\"B. 2007\",\"C. 2012\",\"D. 2017\",\"E. 2018\"]}", HashMap.class);
-        String refAnswer1 = "B";
-        Question question1 = new Question(Question.QuestionType.SINGLE, questionStatement1, refAnswer1, "golang");
-        Map<String, Object> questionStatement2 = new ObjectMapper().readValue(
-                "{\"statement\":\"which year is NOT golang first released?\",\"choices\":[\"A. 2010\",\"B. 2011\",\"C. 2007\",\"D. 2017\"]}", HashMap.class);
-        String refAnswer2 = "A,B,D";
-        Question question2 = new Question(Question.QuestionType.MULTIPLE, questionStatement2, refAnswer2, "golang");
-        Map<String, Object> questionStatement3 = new ObjectMapper().readValue(
-                "{\"statement\":\"Who created golang?\"}", HashMap.class);
-        String refAnswer3 = "Robert Griesemer, Rob Pike, and Ken Thompson";
-        Question question3 = new Question(Question.QuestionType.WRITING, questionStatement3, refAnswer3, "golang,programming language");
-        questionRepository.saveAll(Arrays.asList(question1, question2, question3));
     }
 }

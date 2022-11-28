@@ -1,4 +1,4 @@
-package com.wang.teachermsrv.service.publisher;
+package com.wang.teachermsrv.mq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentExamPublisher extends AbstractPublisher {
     public StudentExamPublisher(final AmqpTemplate amqpTemplate,
-                               @Value("${amqp.exchange.teacher}") final String topicExchange,
+                               @Value("${amqp.exchange.mgt}") final String topicExchange,
                                @Value("${amqp.routingkey.studentexam}") final String routingKey) {
         super(amqpTemplate, topicExchange, routingKey);
     }
