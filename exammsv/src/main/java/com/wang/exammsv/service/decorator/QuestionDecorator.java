@@ -1,4 +1,4 @@
-package com.wang.exammsv.service.question;
+package com.wang.exammsv.service.decorator;
 
 import com.wang.exammsv.domain.Question;
 import lombok.AllArgsConstructor;

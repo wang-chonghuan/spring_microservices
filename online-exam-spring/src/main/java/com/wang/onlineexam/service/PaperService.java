@@ -59,10 +59,10 @@ public class PaperService {
             Question question = questionRepository.findById(qParam.questionId).get();
             QuestionWrapper qw = new QuestionWrapper();
             qw.initByClass(question, qParam);
-            // grade the choice question
+            // grade the choice decorator
             qw.autoGrade(question);
             scoreOfChoiceQuestions += qw.score;
-            // gen the question json
+            // gen the decorator json
             answeredQuestionList.add(qw);
         }
 

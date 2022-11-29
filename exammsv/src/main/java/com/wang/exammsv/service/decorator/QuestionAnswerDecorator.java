@@ -1,13 +1,8 @@
-package com.wang.exammsv.service.question;
+package com.wang.exammsv.service.decorator;
 
 import com.wang.exammsv.domain.Question;
-import com.wang.exammsv.domain.dto.QuestionAnswer;
+import com.wang.exammsv.dto.QuestionAnswer;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 @NoArgsConstructor
 public class QuestionAnswerDecorator extends QuestionDecorator {

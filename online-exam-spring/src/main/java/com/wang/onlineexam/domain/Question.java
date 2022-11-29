@@ -23,7 +23,7 @@ public class Question {
     private String refAnswer;
 
     @NotNull
-    private String tags; // one question has many tags, can be selected by regular-expressions
+    private String tags; // one decorator has many tags, can be selected by regular-expressions
 
     public enum QuestionType {
         SINGLE, MULTIPLE, WRITING

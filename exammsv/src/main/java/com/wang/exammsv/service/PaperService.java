@@ -3,12 +3,11 @@ package com.wang.exammsv.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wang.exammsv.domain.Blankpaper;
 import com.wang.exammsv.domain.Question;
-import com.wang.exammsv.domain.dto.QuestionSetting;
-import com.wang.exammsv.domain.dto.QuestionSettingsDTO;
+import com.wang.exammsv.dto.QuestionSetting;
+import com.wang.exammsv.dto.QuestionSettingsDTO;
 import com.wang.exammsv.repository.BlankpaperRepository;
 import com.wang.exammsv.repository.QuestionRepository;
-import com.wang.exammsv.service.question.QuestionDecorator;
-import com.wang.exammsv.service.question.QuestionSettingDecorator;
+import com.wang.exammsv.service.decorator.QuestionSettingDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

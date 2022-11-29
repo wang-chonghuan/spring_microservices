@@ -24,7 +24,7 @@ public class Question {
     @Column
     private Long id;
     private String refAnswer;
-    private String tags; // one question has many tags, can be selected by regular-expressions
+    private String tags; // one decorator has many tags, can be selected by regular-expressions
 
     private QuestionType questionType;
 

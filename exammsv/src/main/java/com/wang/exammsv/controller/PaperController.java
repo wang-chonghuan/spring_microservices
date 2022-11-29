@@ -1,7 +1,7 @@
 package com.wang.exammsv.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.wang.exammsv.domain.dto.QuestionSettingsDTO;
+import com.wang.exammsv.dto.QuestionSettingsDTO;
 import com.wang.exammsv.service.PaperService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

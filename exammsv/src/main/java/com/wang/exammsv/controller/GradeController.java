@@ -2,8 +2,10 @@ package com.wang.exammsv.controller;
 
 import com.wang.exammsv.domain.Blankpaper;
 import com.wang.exammsv.domain.StudentExamResult;
+import com.wang.exammsv.dto.BonusDTO;
 import com.wang.exammsv.repository.StudentExamResultRepository;
 import com.wang.exammsv.service.GradeService;
+import com.wang.exammsv.service.interpreter.BonusCalculator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class GradeController {
         return ResponseEntity.ok().body(result.get().getAnsweredpaper());
     }
 
+    // todo
     @RequestMapping(value="/manual", method= RequestMethod.POST)
     public ResponseEntity<?> manual(@RequestBody Object dto) throws Exception {
         return ResponseEntity.ok().body("");
@@ -44,8 +47,9 @@ public class GradeController {
 
     // modify all the scores of an exam, with an expression like: 50 10 0.6 + *
     @RequestMapping(value="/addbonus", method= RequestMethod.POST)
-    public ResponseEntity<?> addBonus(@RequestBody Object dto) throws Exception {
-        return ResponseEntity.ok().body("");
+    public ResponseEntity<?> addBonus(@RequestBody BonusDTO bonusDTO) throws Exception {
+        gradeService.addBonus(bonusDTO);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     // send score to mgt-sv to update the scores there

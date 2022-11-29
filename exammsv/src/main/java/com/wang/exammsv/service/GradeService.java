@@ -3,13 +3,15 @@ package com.wang.exammsv.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wang.exammsv.domain.StudentExamResult;
-import com.wang.exammsv.domain.dto.AnswerPaper;
+import com.wang.exammsv.dto.AnswerPaper;
+import com.wang.exammsv.dto.BonusDTO;
 import com.wang.exammsv.mq.ScorePublisher;
 import com.wang.exammsv.mq.event.Score;
 import com.wang.exammsv.mq.event.ScoreEvent;
 import com.wang.exammsv.repository.QuestionRepository;
 import com.wang.exammsv.repository.StudentExamResultRepository;
-import com.wang.exammsv.service.question.QuestionAnswerDecorator;
+import com.wang.exammsv.service.decorator.QuestionAnswerDecorator;
+import com.wang.exammsv.service.interpreter.BonusCalculator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,16 @@ public class GradeService {
                 var score = qad.autoGrade();
                 log.info("score {} examId {} studentId {} questionId {}", score, examId, result.getStudentId(), answer.getQuestionId());
             }
+        }
+    }
+
+    public void addBonus(BonusDTO bonusDTO) {
+        var resultList = resultRepository.findByExamId(bonusDTO.getExamId());
+        for(var result : resultList) {
+            var oriScore = result.getScore();
+            var newScore = BonusCalculator.interpret(bonusDTO.getExpression(), oriScore);
+            result.setScore(newScore);
+            resultRepository.save(result);
         }
     }
 }

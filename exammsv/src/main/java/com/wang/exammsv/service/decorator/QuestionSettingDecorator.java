@@ -1,7 +1,7 @@
-package com.wang.exammsv.service.question;
+package com.wang.exammsv.service.decorator;
 
 import com.wang.exammsv.domain.Question;
-import com.wang.exammsv.domain.dto.QuestionSetting;
+import com.wang.exammsv.dto.QuestionSetting;
 import lombok.NoArgsConstructor;
 
 import java.util.*;
