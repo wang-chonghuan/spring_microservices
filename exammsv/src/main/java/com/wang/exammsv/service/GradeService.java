@@ -2,39 +2,29 @@ package com.wang.exammsv.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.dto.AnswerPaper;
 import com.wang.exammsv.dto.BonusDTO;
-import com.wang.exammsv.mq.ScorePublisher;
-import com.wang.exammsv.mq.event.Score;
-import com.wang.exammsv.mq.event.ScoreEvent;
 import com.wang.exammsv.repository.QuestionRepository;
 import com.wang.exammsv.repository.StudentExamResultRepository;
+import com.wang.exammsv.service.command.GradeCommandChain;
 import com.wang.exammsv.service.decorator.QuestionAnswerDecorator;
 import com.wang.exammsv.service.interpreter.BonusCalculator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Slf4j
 @Service
 public class GradeService {
     @Autowired
-    private ScorePublisher scorePublisher;
-
+    private GradeCommandChain gradeCommandChain;
     @Autowired
     private StudentExamResultRepository resultRepository;
     @Autowired
     private QuestionRepository questionRepository;
 
     public void broadcastScores(long examId) {
-        List<StudentExamResult> resultList = resultRepository.findByExamId(examId);
-        scorePublisher.publish(new ScoreEvent(resultList.stream()
-                        .map(r -> new Score(r.getExamId(), r.getStudentId(), r.getScore()))
-                        .collect(Collectors.toList())));
+        gradeCommandChain.broadcastScoreProcess().executeCommands(examId);
     }
 
     public void autoGrade(long examId) throws JsonProcessingException {
