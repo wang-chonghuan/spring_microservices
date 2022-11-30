@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BroadcastScoreCommand extends GradeCommand {
+public class BroadcastScoreCommand implements GradeCommand {
 
     // todo!! 这里用Autowire注入会是空指针，因为这个类是在运行时new出来的，不能自动注入。自动注入的对象必须是服务器启动时装配好的
     private ScorePublisher publisher;

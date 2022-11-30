@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class AssemblePaperCommand extends GradeCommand {
+public class AssemblePaperCommand implements GradeCommand {
 
     @Autowired
     private QuestionRepository questionRepository;

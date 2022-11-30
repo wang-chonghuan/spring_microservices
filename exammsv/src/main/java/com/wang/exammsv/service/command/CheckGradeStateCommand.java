@@ -4,7 +4,7 @@ import com.wang.exammsv.domain.StudentExamResult;
 
 import java.util.List;
 
-public class CheckGradeStateCommand extends GradeCommand {
+public class CheckGradeStateCommand implements GradeCommand {
 
     private GradeState shouldbeState;
 

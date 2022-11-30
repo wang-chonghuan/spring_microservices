@@ -4,7 +4,7 @@ import com.wang.exammsv.domain.StudentExamResult;
 
 import java.util.List;
 
-public class AddBonusCommand extends GradeCommand {
+public class AddBonusCommand implements GradeCommand {
     @Override
     public void execute(List<StudentExamResult> resultList) throws BreakChainException {
 
