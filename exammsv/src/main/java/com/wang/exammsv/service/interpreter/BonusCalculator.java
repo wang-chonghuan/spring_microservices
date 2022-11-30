@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BonusCalculator {
     /**
      *
-     * @param bonusExpression 10 + 1.2 * 1 +
+     * @param bonusExpression  10 + 1.2 * 1 +
      * @param oriScore 50
      * @return 73
      */
