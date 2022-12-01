@@ -1,7 +1,7 @@
 package com.wang.exammsv.controller;
 
 import com.wang.exammsv.domain.Blankpaper;
-import com.wang.exammsv.dto.AnswersDTO;
+import com.wang.exammsv.dto.AnswerDTO;
 import com.wang.exammsv.repository.BlankpaperRepository;
 import com.wang.exammsv.service.ExamService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class ExamController {
     }
 
     @PostMapping("/postanswers")
-    public ResponseEntity<?> postAnswers(@RequestBody @Valid AnswersDTO dto) {
+    public ResponseEntity<?> postAnswers(@RequestBody @Valid AnswerDTO dto) {
         examService.saveAnsweredPaper(dto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

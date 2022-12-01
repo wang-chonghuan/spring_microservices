@@ -1,11 +1,14 @@
 package com.wang.exammsv.dto;
 
-import lombok.Value;
+import lombok.*;
 
-@Value
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Answer {
-    long questionId;
-    int order;
-    double mark;
-    String answer;
+    private long questionId;
+    private int order;
+    private double mark;
+    private String answer;
 }

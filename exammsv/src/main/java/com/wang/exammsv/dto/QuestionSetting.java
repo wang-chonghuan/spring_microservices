@@ -1,11 +1,13 @@
 package com.wang.exammsv.dto;
 
-import lombok.Getter;
-import lombok.Value;
+import lombok.*;
 
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class QuestionSetting {
-    public long questionId;
-    public int order;
-    public double mark;
+    private long questionId;
+    private int order;
+    private double mark;
 }

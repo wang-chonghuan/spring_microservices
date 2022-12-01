@@ -37,8 +37,10 @@ public class StudentExamResult {
     @Enumerated(EnumType.ORDINAL)
     private GradeCommand.GradeState gradeState;
 
+    // when create result, it is pending
     public StudentExamResult(Long studentId, Long examId) {
         this.studentId = studentId;
         this.examId = examId;
+        this.gradeState = GradeCommand.GradeState.pending; // first create the result, the student hasnt taken the exam
     }
 }

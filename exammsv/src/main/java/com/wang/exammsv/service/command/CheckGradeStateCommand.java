@@ -9,7 +9,7 @@ public class CheckGradeStateCommand implements GradeCommand {
     private GradeState shouldbeState;
 
     @Override
-    public void execute(List<StudentExamResult> resultList) throws BreakChainException {
+    public void execute(long examId, List<StudentExamResult> resultList) throws BreakChainException {
 
     }
 

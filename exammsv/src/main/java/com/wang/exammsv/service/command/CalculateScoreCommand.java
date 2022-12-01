@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CalculateScoreCommand implements GradeCommand {
     @Override
-    public void execute(List<StudentExamResult> resultList) throws BreakChainException {
+    public void execute(long examId, List<StudentExamResult> resultList) throws BreakChainException {
 
     }
 }

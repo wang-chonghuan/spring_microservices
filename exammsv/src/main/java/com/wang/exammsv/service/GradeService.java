@@ -2,7 +2,7 @@ package com.wang.exammsv.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wang.exammsv.dto.AnswerPaper;
+import com.wang.exammsv.dto.AnswerDTO;
 import com.wang.exammsv.dto.BonusDTO;
 import com.wang.exammsv.repository.QuestionRepository;
 import com.wang.exammsv.repository.StudentExamResultRepository;
@@ -28,9 +28,13 @@ public class GradeService {
     }
 
     public void autoGrade(long examId) throws JsonProcessingException {
+        gradeCommandChain.assemblePaperProcess().executeCommands(examId);
+    }
+
+    public void autoGradeOLD(long examId) throws JsonProcessingException {
         var resultList = resultRepository.findByExamId(examId);
         for(var result : resultList) {
-            AnswerPaper answerPaper = new ObjectMapper().convertValue(result.getAnsweredpaper(), AnswerPaper.class);
+            AnswerDTO answerPaper = new ObjectMapper().convertValue(result.getAnsweredpaper(), AnswerDTO.class);
             if(answerPaper.getAnswerList() == null) {
                 continue;
             }

@@ -17,18 +17,20 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class QueuesListener {
     @Autowired
-    private StudentExamResultRepository studentExamResultRepository;
+    private StudentExamResultRepository resultRepository;
 
     // when @RabbitListener is on class level, use @RabbitHandler to annotate the method
     @RabbitListener(queues="${amqp.queue.studentexam}")
     void handleStudentExamEvent(final StudentExamEvent event) {
         try {
             log.info("handleStudentExamEvent, examId {}, content {}", event.getExamId(), event.getStudentIdList());
-            studentExamResultRepository.saveAll(
-                    event.getStudentIdList()
-                            .stream()
-                            .map(id -> new StudentExamResult(id, event.getExamId()))
-                            .collect(Collectors.toList()));
+            event.getStudentIdList().forEach(studentId -> {
+                var result =
+                        resultRepository.findByStudentIdAndExamId(studentId, event.getExamId()).stream().findFirst();
+                if(result.isEmpty()) {
+                    resultRepository.save(new StudentExamResult(studentId, event.getExamId()));
+                }
+            });
         } catch (final Exception e) {
             log.error("error when trying to process handleStudentExamEvent", e);
             throw new AmqpRejectAndDontRequeueException(e);

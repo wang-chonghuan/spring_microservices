@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wang.exammsv.domain.Blankpaper;
 import com.wang.exammsv.domain.Question;
 import com.wang.exammsv.dto.QuestionSetting;
-import com.wang.exammsv.dto.QuestionSettingsDTO;
+import com.wang.exammsv.dto.QuestionSettingDTO;
 import com.wang.exammsv.repository.BlankpaperRepository;
 import com.wang.exammsv.repository.QuestionRepository;
 import com.wang.exammsv.service.decorator.QuestionSettingDecorator;
@@ -22,12 +22,12 @@ public class PaperService {
     @Autowired
     private BlankpaperRepository blankpaperRepository;
 
-    public void createBlankpaper(QuestionSettingsDTO dto) throws JsonProcessingException {
+    public void createBlankpaper(QuestionSettingDTO dto) throws JsonProcessingException {
 
         List<QuestionSettingDecorator> qdList = new ArrayList<>();
 
         for(QuestionSetting qs: dto.getQuestionSettingList()) {
-            Question q = questionRepository.findById(qs.questionId).get();
+            Question q = questionRepository.findById(qs.getQuestionId()).get();
             QuestionSettingDecorator qd = new QuestionSettingDecorator(q, qs);
             qdList.add(qd);
         }

@@ -1,7 +1,7 @@
 package com.wang.exammsv.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.wang.exammsv.dto.QuestionSettingsDTO;
+import com.wang.exammsv.dto.QuestionSettingDTO;
 import com.wang.exammsv.service.PaperService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +30,9 @@ public class PaperController {
     }
 
     @RequestMapping(value="/createpaper", method= RequestMethod.POST)
-    public ResponseEntity<?> createPaper(@RequestBody @Valid QuestionSettingsDTO questionSettingsDTO) {
+    public ResponseEntity<?> createPaper(@RequestBody @Valid QuestionSettingDTO questionSettingDTO) {
         try {
-            paperService.createBlankpaper(questionSettingsDTO);
+            paperService.createBlankpaper(questionSettingDTO);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

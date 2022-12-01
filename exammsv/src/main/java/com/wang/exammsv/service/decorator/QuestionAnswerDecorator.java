@@ -1,14 +1,14 @@
 package com.wang.exammsv.service.decorator;
 
 import com.wang.exammsv.domain.Question;
-import com.wang.exammsv.dto.QuestionAnswer;
+import com.wang.exammsv.dto.Answer;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class QuestionAnswerDecorator extends QuestionDecorator {
-    private QuestionAnswer qa;
+    private Answer qa;
 
-    public QuestionAnswerDecorator(Question q, QuestionAnswer qa) {
+    public QuestionAnswerDecorator(Question q, Answer qa) {
         super(q);
         this.qa = qa;
     }
@@ -16,7 +16,7 @@ public class QuestionAnswerDecorator extends QuestionDecorator {
     // this decorator is only for grading
     public double autoGrade() {
         GradeStrategy.Strategy strategy = GradeStrategy.create(super.question.getQuestionType());
-        qa.score = strategy.grade(qa.answer, question.getRefAnswer(), qa.mark);
-        return qa.score;
+        var score = strategy.grade(qa.getAnswer(), question.getRefAnswer(), qa.getMark());
+        return score;
     }
 }

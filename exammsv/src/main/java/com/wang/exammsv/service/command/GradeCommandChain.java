@@ -2,14 +2,12 @@ package com.wang.exammsv.service.command;
 
 import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.mq.ScorePublisher;
-import com.wang.exammsv.mq.event.Score;
 import com.wang.exammsv.repository.QuestionRepository;
 import com.wang.exammsv.repository.StudentExamResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -19,13 +17,15 @@ public class GradeCommandChain {
     @Autowired
     private StudentExamResultRepository resultRepository;
     @Autowired
+    private QuestionRepository questionRepository;
+    @Autowired
     private ScorePublisher scorePublisher;
 
     public GradeCommandChain totallyAutoGradeProcess(String expression) {
         gradeCommandList.clear();
         gradeCommandList.addAll(List.of(
                 new CheckGradeStateCommand(GradeCommand.GradeState.submitted),
-                new AssemblePaperCommand(),
+                new AssemblePaperCommand(questionRepository, resultRepository),
                 new CalculateScoreCommand(),
                 new AddBonusCommand(expression),
                 new BroadcastScoreCommand(scorePublisher),
@@ -44,8 +44,7 @@ public class GradeCommandChain {
         gradeCommandList.clear();
         gradeCommandList.addAll(List.of(
                 new CheckGradeStateCommand(GradeCommand.GradeState.submitted),
-                new AssemblePaperCommand(),
-                new CalculateScoreCommand(),
+                new AssemblePaperCommand(questionRepository, resultRepository),
                 new UpdateGradeStateCommand(GradeCommand.GradeState.assembled)));
         return this;
     }
@@ -97,7 +96,7 @@ public class GradeCommandChain {
         List<StudentExamResult> resultList = resultRepository.findByExamId(examId);
         gradeCommandList.forEach(command -> {
             try {
-                command.execute(resultList);
+                command.execute(examId, resultList);
             } catch (BreakChainException e) {
                 throw new RuntimeException(e);
             }
