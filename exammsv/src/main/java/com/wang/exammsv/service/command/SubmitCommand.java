@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SubmitCommand implements GradeCommand {
-    private GradeState gradeState;
-    private StudentExamResultRepository resultRepository;
+    private final GradeState gradeState;
+    private final StudentExamResultRepository resultRepository;
 
     @Override
     public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {

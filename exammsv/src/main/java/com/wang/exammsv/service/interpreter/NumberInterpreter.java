@@ -7,7 +7,7 @@ public class NumberInterpreter implements Interpreter {
         this.number = number;
     }
     NumberInterpreter(String number) {
-        this.number = Double.valueOf(number);
+        this.number = Double.parseDouble(number);
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CheckGradeStateCommand implements GradeCommand {
 
-    private GradeState legalState;
+    private final GradeState legalState;
 
     @Override
     public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {

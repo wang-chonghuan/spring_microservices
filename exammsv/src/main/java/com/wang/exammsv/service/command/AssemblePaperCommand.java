@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class AssemblePaperCommand implements GradeCommand {
 
-    private QuestionRepository questionRepository;
+    private final QuestionRepository questionRepository;
     private StudentExamResultRepository resultRepository;
 
     public AssemblePaperCommand(QuestionRepository questionRepository, StudentExamResultRepository resultRepository) {

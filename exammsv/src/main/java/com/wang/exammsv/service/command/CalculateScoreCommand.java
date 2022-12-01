@@ -7,8 +7,6 @@ import java.util.List;
 public class CalculateScoreCommand implements GradeCommand {
     @Override
     public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {
-        resultDecoratorList.forEach(rd -> {
-            rd.calculateScore();
-        });
+        resultDecoratorList.forEach(ResultGradeDecorator::calculateScore);
     }
 }

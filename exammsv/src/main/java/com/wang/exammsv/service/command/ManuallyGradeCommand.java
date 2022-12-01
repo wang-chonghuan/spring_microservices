@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ManuallyGradeCommand  implements GradeCommand {
 
-    private ManuallyGradeDTO manuallyGradeDTO;
+    private final ManuallyGradeDTO manuallyGradeDTO;
 
     @Override
     public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {

@@ -14,7 +14,7 @@ public class AddBonusCommand implements GradeCommand {
         });
     }
 
-    private String expression;
+    private final String expression;
 
     public AddBonusCommand(String expression) {
         this.expression = expression;

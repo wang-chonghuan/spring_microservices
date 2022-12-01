@@ -10,8 +10,10 @@ import java.util.stream.Collectors;
 
 public class BroadcastScoreCommand implements GradeCommand {
 
-    // todo!! Here the injection with Autowire will be a null pointer, because the class is new at runtime and cannot be injected automatically. The object to be injected automatically must be assembled at server startup
-    private ScorePublisher publisher;
+    // Here the injection with Autowire will be a null pointer,
+    // because the class is new at runtime and cannot be injected automatically.
+    // The object to be injected automatically must be assembled at server startup
+    private final ScorePublisher publisher;
 
     @Override
     public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {

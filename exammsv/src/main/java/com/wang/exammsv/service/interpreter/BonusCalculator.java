@@ -2,6 +2,8 @@ package com.wang.exammsv.service.interpreter;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Objects;
+
 @Slf4j
 public class BonusCalculator {
     /**
@@ -11,11 +13,10 @@ public class BonusCalculator {
      * @return 73
      */
     public static double interpret(String bonusExpression, double oriScore) {
-        if(bonusExpression == "") {
+        if(Objects.equals(bonusExpression, "")) {
             return oriScore;
         }
         var expression = String.valueOf(oriScore) + " " + bonusExpression;
-        var score = ExpressionParser.parse(expression);
-        return score;
+        return ExpressionParser.parse(expression);
     }
 }

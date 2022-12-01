@@ -32,7 +32,6 @@ public class ControllerTests {
                 .header(HttpHeaders.CONTENT_TYPE, "application/json"))
                 .andDo(print()).andExpect(status().isOk());
     }
-
     @Test
     public void testPostAnsweredPaper() throws Exception {
         String url = "http://localhost:8090/exam/postanswers";
@@ -41,7 +40,6 @@ public class ControllerTests {
                 .header(HttpHeaders.CONTENT_TYPE, "application/json"))
                 .andDo(print()).andExpect(status().isOk());
     }
-
     @Test
     public void testCreatePaper() throws Exception {
         String url = "http://localhost:8090/paper/createpaper";
@@ -50,7 +48,6 @@ public class ControllerTests {
                 .header(HttpHeaders.CONTENT_TYPE, "application/json"))
                 .andDo(print()).andExpect(status().isOk());
     }
-
     @Test
     public void testFetchBlankpaper() throws Exception {
         testCreatePaper();
@@ -60,6 +57,5 @@ public class ControllerTests {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
-                //.andExpect(MockMvcResultMatchers.content().bytes(expectedResult.getBytes()));
     }
 }
