@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import java.util.*;
 
 @NoArgsConstructor
-public class QuestionSettingDecorator extends QuestionDecorator {
+public class QuestionSettingDecorator {
+    private Question question;
     private QuestionSetting qs;
 
     public QuestionSettingDecorator(Question q, QuestionSetting qs) {
-        super(q);
+        this.question = q;
         this.qs = qs;
     }
 

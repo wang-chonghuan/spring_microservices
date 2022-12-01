@@ -32,15 +32,10 @@ public class PaperService {
             qdList.add(qd);
         }
 
-        Map<String, Object> qListJsonmap = QuestionSettingDecorator.questionDecoratorListToJsonmap(
-                qdList, QuestionListTag.blank_question_list.name());
-        // aString = anIntList.stream().map(String::valueOf).collect(Collectors.joining(","))
+        Map<String, Object> qListJsonmap = QuestionSettingDecorator
+                .questionDecoratorListToJsonmap(qdList, "blank_question_list");
 
         Blankpaper b = new Blankpaper(dto.getExamId(), qListJsonmap);
         blankpaperRepository.save(b);
-    }
-
-    public enum QuestionListTag {
-        blank_question_list, answered_question_list, writing_question_list
     }
 }

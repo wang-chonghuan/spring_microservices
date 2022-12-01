@@ -1,11 +1,9 @@
 package com.wang.exammsv.controller;
 
-import com.wang.exammsv.domain.Blankpaper;
 import com.wang.exammsv.domain.StudentExamResult;
-import com.wang.exammsv.dto.BonusDTO;
+import com.wang.exammsv.dto.BroadcastDTO;
 import com.wang.exammsv.repository.StudentExamResultRepository;
 import com.wang.exammsv.service.GradeService;
-import com.wang.exammsv.service.interpreter.BonusCalculator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,30 +31,25 @@ public class GradeController {
         return ResponseEntity.ok().body(result.get().getAnsweredpaper());
     }
 
-    // todo
-    @RequestMapping(value="/manual", method= RequestMethod.POST)
-    public ResponseEntity<?> manual(@RequestBody Object dto) throws Exception {
-        return ResponseEntity.ok().body("");
-    }
-
     @RequestMapping(value="/auto", method= RequestMethod.GET)
     public ResponseEntity<?> auto(@RequestParam long examId) throws Exception {
         gradeService.autoGrade(examId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    // modify all the scores of an exam, with an expression like: 50 10 0.6 + *
-    @RequestMapping(value="/addbonus", method= RequestMethod.POST)
-    public ResponseEntity<?> addBonus(@RequestBody BonusDTO bonusDTO) throws Exception {
-        gradeService.addBonus(bonusDTO);
+    // 1. add bonus(or "") to all scores
+    // 2. send score to mgt-sv to update the scores there
+    // modify all the scores of an exam, with an expression like: "10 + 1.2 * 1 +"
+    // apply this to 50 : (50+10)*1.2+1=73
+    @RequestMapping(value="/broadcastscores", method= RequestMethod.POST)
+    public ResponseEntity<?> broadcastScoreWithBonus(@RequestBody BroadcastDTO broadcastDTO) throws Exception {
+        gradeService.broadcastScoreWithBonus(broadcastDTO);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    // send score to mgt-sv to update the scores there
-    @RequestMapping(value="/broadcastscores", method= RequestMethod.GET)
-    public ResponseEntity<?> broadcastScores(@RequestParam long examId) throws Exception {
-        gradeService.broadcastScores(examId);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    // todo
+    @RequestMapping(value="/manual", method= RequestMethod.POST)
+    public ResponseEntity<?> manual(@RequestBody Object dto) throws Exception {
+        return ResponseEntity.ok().body("");
     }
-
 }

@@ -1,19 +1,19 @@
 package com.wang.exammsv.service.command;
 
-import com.wang.exammsv.domain.StudentExamResult;
+import com.wang.exammsv.service.decorator.ResultGradeDecorator;
 
 import java.util.List;
 
 public class CheckGradeStateCommand implements GradeCommand {
 
-    private GradeState shouldbeState;
+    private GradeState legalState;
 
     @Override
-    public void execute(long examId, List<StudentExamResult> resultList) throws BreakChainException {
+    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) {
 
     }
 
-    public CheckGradeStateCommand(GradeState shouldbeState) {
-        this.shouldbeState = shouldbeState;
+    public CheckGradeStateCommand(GradeState legalState) {
+        this.legalState = legalState;
     }
 }

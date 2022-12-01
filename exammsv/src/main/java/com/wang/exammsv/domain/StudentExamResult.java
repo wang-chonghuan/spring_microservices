@@ -10,6 +10,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +26,10 @@ public class StudentExamResult {
     private Long studentId; // fk of Student in mgtmsv
     private Long examId; // fk of Exam in mgtmsv
     private double score;
+
+    public void setScore(double score) {
+        this.score = Double.parseDouble(new DecimalFormat("#.00").format(score));
+    }
 
     @Type(type = "json")
     @Column(name = "answered_paper", columnDefinition = "json")
