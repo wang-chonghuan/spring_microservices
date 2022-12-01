@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AddBonusCommand implements GradeCommand {
     @Override
-    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) {
+    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {
         resultDecoratorList.forEach(rd -> {
             var newScore = BonusCalculator.interpret(this.expression, rd.getScore());
             rd.setScore(newScore);

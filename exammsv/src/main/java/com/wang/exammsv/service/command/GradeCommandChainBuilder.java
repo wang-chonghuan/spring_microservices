@@ -66,7 +66,11 @@ public class GradeCommandChainBuilder {
             resultDecoratorList.add(new ResultGradeDecorator(result));
         });
         gradeCommandList.forEach(command -> {
-            command.execute(examId, resultDecoratorList);
+            try {
+                command.execute(examId, resultDecoratorList);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
         return this;
     }

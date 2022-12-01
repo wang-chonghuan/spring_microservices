@@ -14,7 +14,7 @@ public class BroadcastScoreCommand implements GradeCommand {
     private ScorePublisher publisher;
 
     @Override
-    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) {
+    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {
         publisher.publish(new ScoreEvent(resultDecoratorList.stream()
                 .map(r -> new Score(r.getExamId(), r.getStudentId(), r.getScore()))
                 .collect(Collectors.toList())));

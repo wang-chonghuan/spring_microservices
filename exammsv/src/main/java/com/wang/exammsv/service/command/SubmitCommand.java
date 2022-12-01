@@ -11,7 +11,7 @@ public class SubmitCommand implements GradeCommand {
     private StudentExamResultRepository resultRepository;
 
     @Override
-    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) {
+    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {
         this.resultRepository.saveAll(resultDecoratorList.stream().map(r -> {
             r.getResult().setGradeState(gradeState);
             return r.getResult();

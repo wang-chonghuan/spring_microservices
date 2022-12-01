@@ -10,7 +10,7 @@ public class ManuallyGradeCommand  implements GradeCommand {
     private ManuallyGradeDTO manuallyGradeDTO;
 
     @Override
-    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) {
+    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {
         if(manuallyGradeDTO.getManullyGradeList().isEmpty()) {
             return;
         } else {

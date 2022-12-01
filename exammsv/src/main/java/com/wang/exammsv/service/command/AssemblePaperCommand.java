@@ -26,7 +26,7 @@ public class AssemblePaperCommand implements GradeCommand {
     }
 
     @Override
-    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) {
+    public void execute(long examId, List<ResultGradeDecorator> resultDecoratorList) throws Exception {
         for(var rd : resultDecoratorList) {
             AnswerDTO answerDTO = new ObjectMapper().convertValue(rd.getAnsweredpaper(), AnswerDTO.class);
             if(answerDTO.getAnswerList() == null) {
