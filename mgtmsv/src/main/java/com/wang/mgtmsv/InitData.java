@@ -2,7 +2,6 @@ package com.wang.mgtmsv;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wang.mgtmsv.domain.*;
-import com.wang.mgtmsv.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

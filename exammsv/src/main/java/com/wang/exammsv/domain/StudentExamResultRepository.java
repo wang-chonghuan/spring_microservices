@@ -1,4 +1,4 @@
-package com.wang.exammsv.repository;
+package com.wang.exammsv.domain;
 
 import com.wang.exammsv.domain.Blankpaper;
 import com.wang.exammsv.domain.StudentExamResult;

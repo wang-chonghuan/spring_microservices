@@ -1,4 +1,4 @@
-package com.wang.mgtmsv.repository;
+package com.wang.mgtmsv.domain;
 
 import com.wang.mgtmsv.domain.Student;
 import org.springframework.data.repository.CrudRepository;

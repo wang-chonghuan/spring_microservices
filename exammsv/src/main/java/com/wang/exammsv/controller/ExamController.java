@@ -2,7 +2,7 @@ package com.wang.exammsv.controller;
 
 import com.wang.exammsv.domain.Blankpaper;
 import com.wang.exammsv.dto.AnswerDTO;
-import com.wang.exammsv.repository.BlankpaperRepository;
+import com.wang.exammsv.domain.BlankpaperRepository;
 import com.wang.exammsv.service.ExamService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

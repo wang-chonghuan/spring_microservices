@@ -3,8 +3,8 @@ package com.wang.exammsv.service.command;
 import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.dto.ManuallyGradeDTO;
 import com.wang.exammsv.mq.ScorePublisher;
-import com.wang.exammsv.repository.QuestionRepository;
-import com.wang.exammsv.repository.StudentExamResultRepository;
+import com.wang.exammsv.domain.QuestionRepository;
+import com.wang.exammsv.domain.StudentExamResultRepository;
 import com.wang.exammsv.service.decorator.ResultGradeDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,13 +49,6 @@ public class GradeCommandChainBuilder {
                 new AddBonusCommand(expression),
                 new BroadcastScoreCommand(scorePublisher),
                 new SubmitCommand(GradeCommand.GradeState.broadcasted, resultRepository)));
-        return this;
-    }
-
-    public GradeCommandChainBuilder rollbackProcess() {
-        gradeCommandList.clear();
-        gradeCommandList.addAll(List.of(
-                new SubmitCommand(GradeCommand.GradeState.submitted, resultRepository)));
         return this;
     }
 

@@ -2,15 +2,13 @@ package com.wang.exammsv.mq;
 
 import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.mq.event.StudentExamEvent;
-import com.wang.exammsv.repository.StudentExamResultRepository;
+import com.wang.exammsv.domain.StudentExamResultRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service

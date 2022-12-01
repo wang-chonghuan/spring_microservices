@@ -1,6 +1,6 @@
 package com.wang.exammsv.service.command;
 
-import com.wang.exammsv.repository.StudentExamResultRepository;
+import com.wang.exammsv.domain.StudentExamResultRepository;
 import com.wang.exammsv.service.decorator.ResultGradeDecorator;
 
 import java.util.List;

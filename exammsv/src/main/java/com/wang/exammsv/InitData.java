@@ -3,10 +3,9 @@ package com.wang.exammsv;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wang.exammsv.domain.Question;
-import com.wang.exammsv.domain.StudentExamResult;
-import com.wang.exammsv.repository.BlankpaperRepository;
-import com.wang.exammsv.repository.QuestionRepository;
-import com.wang.exammsv.repository.StudentExamResultRepository;
+import com.wang.exammsv.domain.BlankpaperRepository;
+import com.wang.exammsv.domain.QuestionRepository;
+import com.wang.exammsv.domain.StudentExamResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
