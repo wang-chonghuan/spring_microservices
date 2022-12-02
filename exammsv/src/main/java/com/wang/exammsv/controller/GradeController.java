@@ -2,7 +2,7 @@ package com.wang.exammsv.controller;
 
 import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.dto.BroadcastDTO;
-import com.wang.exammsv.domain.StudentExamResultRepository;
+import com.wang.exammsv.repository.StudentExamResultRepository;
 import com.wang.exammsv.dto.ManuallyGradeDTO;
 import com.wang.exammsv.service.GradeService;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +22,6 @@ public class GradeController {
 
     @Autowired
     private GradeService gradeService;
-    @Autowired
-    private StudentExamResultRepository resultRepository;
-
-    @RequestMapping(value="/viewanswers", method= RequestMethod.GET)
-    public ResponseEntity<?> viewAnswers(@RequestParam long studentId, @RequestParam long examId) throws Exception {
-        Optional<StudentExamResult> result = resultRepository.findByStudentIdAndExamId(studentId, examId).stream().findFirst();
-        var ret = result.get().getAnsweredpaper();
-        return ResponseEntity.ok().body(result.get().getAnsweredpaper());
-    }
 
     @RequestMapping(value="/auto", method= RequestMethod.GET)
     public ResponseEntity<?> auto(@RequestParam long examId) throws Exception {

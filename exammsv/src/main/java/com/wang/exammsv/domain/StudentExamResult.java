@@ -1,7 +1,7 @@
 package com.wang.exammsv.domain;
 
 import com.vladmihalcea.hibernate.type.json.JsonType;
-import com.wang.exammsv.service.command.GradeCommand;
+import com.wang.exammsv.command.GradeCommand;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

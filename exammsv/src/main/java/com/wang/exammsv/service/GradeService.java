@@ -2,7 +2,7 @@ package com.wang.exammsv.service;
 
 import com.wang.exammsv.dto.BroadcastDTO;
 import com.wang.exammsv.dto.ManuallyGradeDTO;
-import com.wang.exammsv.service.command.GradeCommandChainBuilder;
+import com.wang.exammsv.command.GradeCommandChainBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
