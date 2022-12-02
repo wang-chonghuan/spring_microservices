@@ -3,6 +3,7 @@ package com.wang.exammsv.controller;
 import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.dto.BroadcastDTO;
 import com.wang.exammsv.domain.StudentExamResultRepository;
+import com.wang.exammsv.dto.ManuallyGradeDTO;
 import com.wang.exammsv.service.GradeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,9 +48,10 @@ public class GradeController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    // todo
+    // todo this one is trivial, leave it unimplemented, we default that all the question are graded automatically
     @RequestMapping(value="/manual", method= RequestMethod.POST)
-    public ResponseEntity<?> manual(@RequestBody Object dto) throws Exception {
+    public ResponseEntity<?> manual(@RequestBody ManuallyGradeDTO dto) throws Exception {
+        gradeService.manuallyGrade(dto);
         return ResponseEntity.ok().body("");
     }
 }

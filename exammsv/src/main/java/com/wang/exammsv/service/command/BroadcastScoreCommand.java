@@ -3,7 +3,6 @@ package com.wang.exammsv.service.command;
 import com.wang.exammsv.mq.ScorePublisher;
 import com.wang.exammsv.mq.event.Score;
 import com.wang.exammsv.mq.event.ScoreEvent;
-import com.wang.exammsv.service.decorator.ResultGradeDecorator;
 
 import java.util.List;
 import java.util.stream.Collectors;

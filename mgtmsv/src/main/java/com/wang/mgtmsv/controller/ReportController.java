@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// todo these REST-APIS are simple CRUD, so no implementation
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -13,10 +14,6 @@ public class ReportController {
 
     /**
      * list all the scores of a student, and average
-     * @param studentId
-     * @param examId
-     * @return
-     * @throws Exception
      */
     @RequestMapping(value="/bystudent", method= RequestMethod.GET)
     public ResponseEntity<?> byStudent(@RequestParam long studentId, @RequestParam long examId) throws Exception {
@@ -25,10 +22,6 @@ public class ReportController {
 
     /**
      * list all the score of a course, and average
-     * @param studentId
-     * @param examId
-     * @return
-     * @throws Exception
      */
     @RequestMapping(value="/bycourse", method= RequestMethod.GET)
     public ResponseEntity<?> byCourse(@RequestParam long studentId, @RequestParam long examId) throws Exception {

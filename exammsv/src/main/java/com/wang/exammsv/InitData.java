@@ -34,15 +34,15 @@ public class InitData {
         Map<String, Object> questionStatement1 = new ObjectMapper().readValue(
                 "{\"statement\":\"which year is golang first released?\",\"choices\":[\"A. 2010\",\"B. 2007\",\"C. 2012\",\"D. 2017\",\"E. 2018\"]}", HashMap.class);
         String refAnswer1 = "B";
-        Question question1 = new Question(Question.QuestionType.SINGLE, questionStatement1, refAnswer1, "golang");
+        Question question1 = new Question(1, Question.QuestionType.SINGLE, questionStatement1, refAnswer1, "golang");
         Map<String, Object> questionStatement2 = new ObjectMapper().readValue(
                 "{\"statement\":\"which year is NOT golang first released?\",\"choices\":[\"A. 2010\",\"B. 2011\",\"C. 2007\",\"D. 2017\"]}", HashMap.class);
         String refAnswer2 = "A,B,D";
-        Question question2 = new Question(Question.QuestionType.MULTIPLE, questionStatement2, refAnswer2, "golang");
+        Question question2 = new Question(2, Question.QuestionType.MULTIPLE, questionStatement2, refAnswer2, "golang");
         Map<String, Object> questionStatement3 = new ObjectMapper().readValue(
                 "{\"statement\":\"Who created golang?\"}", HashMap.class);
         String refAnswer3 = "Robert Griesemer, Rob Pike, and Ken Thompson";
-        Question question3 = new Question(Question.QuestionType.WRITING, questionStatement3, refAnswer3, "golang,programming language");
+        Question question3 = new Question(3, Question.QuestionType.WRITING, questionStatement3, refAnswer3, "golang,programming language");
         questionRepository.saveAll(Arrays.asList(question1, question2, question3));
     }
 }

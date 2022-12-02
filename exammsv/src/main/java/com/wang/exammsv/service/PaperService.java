@@ -1,19 +1,14 @@
 package com.wang.exammsv.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.wang.exammsv.domain.Blankpaper;
-import com.wang.exammsv.domain.Question;
-import com.wang.exammsv.dto.QuestionSetting;
+import com.wang.exammsv.domain.*;
+import com.wang.exammsv.dto.AnswerDTO;
 import com.wang.exammsv.dto.QuestionSettingDTO;
-import com.wang.exammsv.domain.BlankpaperRepository;
-import com.wang.exammsv.domain.QuestionRepository;
+import com.wang.exammsv.service.command.GradeCommand;
 import com.wang.exammsv.service.decorator.QuestionSettingDecorator;
+import com.wang.exammsv.utils.AnyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class PaperService {
@@ -21,21 +16,22 @@ public class PaperService {
     private QuestionRepository questionRepository;
     @Autowired
     private BlankpaperRepository blankpaperRepository;
+    @Autowired
+    private StudentExamResultRepository resultRepository;
 
     public void createBlankpaper(QuestionSettingDTO dto) throws JsonProcessingException {
+        blankpaperRepository.saveUnique(new Blankpaper(
+                dto.getExamId(),
+                QuestionSettingDecorator.listToJson(dto.getExamId(), dto.getQuestionSettingList()
+                        .stream()
+                        .map(qs -> new QuestionSettingDecorator(
+                                questionRepository.findById(qs.getQuestionId()).get(), qs))
+                        .toList())));
+    }
 
-        List<QuestionSettingDecorator> qdList = new ArrayList<>();
-
-        for(QuestionSetting qs: dto.getQuestionSettingList()) {
-            Question q = questionRepository.findById(qs.getQuestionId()).get();
-            QuestionSettingDecorator qd = new QuestionSettingDecorator(q, qs);
-            qdList.add(qd);
-        }
-
-        Map<String, Object> qListJsonmap = QuestionSettingDecorator
-                .questionDecoratorListToJsonmap(qdList, "blank_question_list");
-
-        Blankpaper b = new Blankpaper(dto.getExamId(), qListJsonmap);
-        blankpaperRepository.save(b);
+    public void saveAnsweredPaper(AnswerDTO dto) {
+        resultRepository.updateAnsweredPaper(new StudentExamResult(
+                dto.getStudentId(), dto.getExamId(),
+                AnyUtil.objectToJsonmap(dto), GradeCommand.GradeState.submitted));
     }
 }

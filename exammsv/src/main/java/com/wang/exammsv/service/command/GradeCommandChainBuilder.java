@@ -4,7 +4,6 @@ import com.wang.exammsv.dto.ManuallyGradeDTO;
 import com.wang.exammsv.mq.ScorePublisher;
 import com.wang.exammsv.domain.QuestionRepository;
 import com.wang.exammsv.domain.StudentExamResultRepository;
-import com.wang.exammsv.service.decorator.ResultGradeDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class GradeCommandChainBuilder {
                 new CheckGradeStateCommand(GradeCommand.GradeState.submitted),
                 new AssemblePaperCommand(questionRepository, resultRepository),
                 new CalculateScoreCommand(),
-                new SubmitCommand(GradeCommand.GradeState.autograded, resultRepository)));
+                new SubmitCommand(GradeCommand.GradeState.fullygraded, resultRepository)));
         return this;
     }
     public GradeCommandChainBuilder bonusAndBroadcastProcess(String expression) {
@@ -48,7 +47,7 @@ public class GradeCommandChainBuilder {
     public GradeCommandChainBuilder manuallyGradeProcess(ManuallyGradeDTO manuallyGradeDTO) {
         gradeCommandList.clear();
         gradeCommandList.addAll(List.of(
-                new CheckGradeStateCommand(GradeCommand.GradeState.autograded),
+                new CheckGradeStateCommand(GradeCommand.GradeState.fullygraded),
                 new ManuallyGradeCommand(manuallyGradeDTO),
                 new SubmitCommand(GradeCommand.GradeState.fullygraded, resultRepository)));
         return this;

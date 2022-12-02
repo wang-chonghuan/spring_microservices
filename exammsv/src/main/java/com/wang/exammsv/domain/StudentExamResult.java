@@ -42,10 +42,18 @@ public class StudentExamResult {
     @Enumerated(EnumType.ORDINAL)
     private GradeCommand.GradeState gradeState;
 
-    // when create result, it is pending
-    public StudentExamResult(Long studentId, Long examId) {
+    // used when post answered paper
+    public StudentExamResult(Long studentId, Long examId, Map<String, Object> answeredpaper, GradeCommand.GradeState gradeState) {
         this.studentId = studentId;
         this.examId = examId;
-        this.gradeState = GradeCommand.GradeState.pending; // first create the result, the student hasnt taken the exam
+        this.answeredpaper = answeredpaper;
+        this.gradeState = gradeState; // first create the result, the student hasnt taken the exam
+    }
+
+    // used when register an exam
+    public StudentExamResult(Long studentId, Long examId, GradeCommand.GradeState gradeState) {
+        this.studentId = studentId;
+        this.examId = examId;
+        this.gradeState = gradeState; // first create the result, the student hasnt taken the exam
     }
 }

@@ -7,7 +7,6 @@ import com.wang.exammsv.dto.AssembledAnswerDTO;
 import com.wang.exammsv.dto.QuestionPOJO;
 import com.wang.exammsv.domain.QuestionRepository;
 import com.wang.exammsv.domain.StudentExamResultRepository;
-import com.wang.exammsv.service.decorator.ResultGradeDecorator;
 import com.wang.exammsv.utils.AnyUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +17,7 @@ import java.util.List;
 public class AssemblePaperCommand implements GradeCommand {
 
     private final QuestionRepository questionRepository;
-    private StudentExamResultRepository resultRepository;
+    private final StudentExamResultRepository resultRepository;
 
     public AssemblePaperCommand(QuestionRepository questionRepository, StudentExamResultRepository resultRepository) {
         this.questionRepository = questionRepository;
@@ -42,7 +41,7 @@ public class AssemblePaperCommand implements GradeCommand {
             var assembledAnswerDTO = new AssembledAnswerDTO(examId, rd.getStudentId(), assembledAnswerList);
             rd.setAssembledpaper(AnyUtil.objectToJsonmap(assembledAnswerDTO));
             // set this to decorator, next command when grading, don't need to deserialize this DTO from json
-            rd.setAssembledAnswerDTO(assembledAnswerDTO);
+            rd.injectAssembledAnswerDTO(assembledAnswerDTO);
         }
     }
 }

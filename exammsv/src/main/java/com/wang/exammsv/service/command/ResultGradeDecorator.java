@@ -1,4 +1,4 @@
-package com.wang.exammsv.service.decorator;
+package com.wang.exammsv.service.command;
 
 import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.dto.AssembledAnswer;
@@ -33,7 +33,7 @@ public class ResultGradeDecorator {
                 .mapToDouble(AssembledAnswer::getScore).sum());
     }
 
-    public void setAssembledAnswerDTO(AssembledAnswerDTO assembledAnswerDTO) {
+    public void injectAssembledAnswerDTO(AssembledAnswerDTO assembledAnswerDTO) {
         this.assembledAnswerDTO = assembledAnswerDTO;
     }
 

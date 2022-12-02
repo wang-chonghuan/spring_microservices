@@ -3,6 +3,7 @@ package com.wang.exammsv.mq;
 import com.wang.exammsv.domain.StudentExamResult;
 import com.wang.exammsv.mq.event.StudentExamEvent;
 import com.wang.exammsv.domain.StudentExamResultRepository;
+import com.wang.exammsv.service.command.GradeCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
@@ -26,7 +27,7 @@ public class QueuesListener {
                 var result =
                         resultRepository.findByStudentIdAndExamId(studentId, event.getExamId()).stream().findFirst();
                 if(result.isEmpty()) {
-                    resultRepository.save(new StudentExamResult(studentId, event.getExamId()));
+                    resultRepository.save(new StudentExamResult(studentId, event.getExamId(), GradeCommand.GradeState.pending));
                 }
             });
         } catch (final Exception e) {

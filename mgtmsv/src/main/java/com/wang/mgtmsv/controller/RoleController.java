@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// todo these REST-APIS are simple CRUD, so no implementation
 @Slf4j
 @RequiredArgsConstructor
 @RestController

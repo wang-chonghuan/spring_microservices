@@ -1,7 +1,5 @@
 package com.wang.exammsv.service.command;
 
-import com.wang.exammsv.service.decorator.ResultGradeDecorator;
-
 import java.util.List;
 
 public class CheckGradeStateCommand implements GradeCommand {
@@ -13,8 +11,8 @@ public class CheckGradeStateCommand implements GradeCommand {
         resultDecoratorList.forEach(rd -> {
             if(rd.getResult().getGradeState() != legalState) {
                 throw new RuntimeException(String.format(
-                        "CheckGradeStateCommand legal gradeState %s mismatched: examId %d studentId %d gradeState %s",
-                                legalState.name(), rd.getExamId(), rd.getStudentId(), rd.getResult().getGradeState()));
+                        "CheckGradeStateCommand: db state: examId %d studentId %d gradeState %s, shoule be state: %s",
+                                rd.getExamId(), rd.getStudentId(), rd.getResult().getGradeState(), legalState.name()));
             }
         });
     }

@@ -18,6 +18,7 @@ public class QueuesListener {
     @RabbitListener(queues="${amqp.queue.score}")
     void handleScoreEvent(final ScoreEvent event) {
         try {
+            // todo how to deal with the received scores doesn't belong to the main use cases, so leave it unimplemented
             log.info("handleScoreEvent score list {}",
                     event.getScoreList().stream().map(Score::toString).collect(Collectors.joining(";")));
         } catch (final Exception e) {

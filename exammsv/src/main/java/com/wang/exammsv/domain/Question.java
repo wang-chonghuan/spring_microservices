@@ -28,10 +28,12 @@ public class Question {
 
     private QuestionType questionType;
 
-    public Question(QuestionType questionType,
+    public Question(long questionId,
+                    QuestionType questionType,
                     Map<String, Object> questionContent,
                     String refAnswer,
                     String tags) {
+        this.id = questionId;
         this.questionType = questionType;
         this.questionContent = questionContent;
         this.refAnswer = refAnswer;
