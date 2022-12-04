@@ -72,7 +72,33 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8090/exam/postanswers",
+			"name": "http://localhost:8090/paper/fetchblankpaper?examId=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/paper/fetchblankpaper?examId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"paper",
+						"fetchblankpaper"
+					],
+					"query": [
+						{
+							"key": "examId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8090/paper/postanswers stu1",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -85,6 +111,36 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"studentId\": 1,\r\n  \"examId\": 1,\r\n  \"answerList\": [\r\n    {\r\n      \"questionId\": 1,\r\n      \"order\": 1,\r\n      \"mark\": 5,\r\n      \"answer\": \"B\"\r\n    },\r\n    {\r\n      \"questionId\": 2,\r\n      \"order\": 2,\r\n      \"mark\": 3,\r\n      \"answer\": \"A,B,D\"\r\n    },\r\n    {\r\n      \"questionId\": 3,\r\n      \"order\": 3,\r\n      \"mark\": 2,\r\n      \"answer\": \"Robe Pike\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8090/paper/postanswers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"paper",
+						"postanswers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8090/paper/postanswers stu2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"studentId\": 2,\r\n  \"examId\": 1,\r\n  \"answerList\": [\r\n    {\r\n      \"questionId\": 1,\r\n      \"order\": 1,\r\n      \"mark\": 5,\r\n      \"answer\": \"B\"\r\n    },\r\n    {\r\n      \"questionId\": 2,\r\n      \"order\": 2,\r\n      \"mark\": 3,\r\n      \"answer\": \"A,B,D\"\r\n    },\r\n    {\r\n      \"questionId\": 3,\r\n      \"order\": 3,\r\n      \"mark\": 2,\r\n      \"answer\": \"Robe Pike\"\r\n    }\r\n  ]\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8090/exam/postanswers",
@@ -128,59 +184,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8090/exam/fetchblankpaper?paperId=1",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8090/exam/fetchblankpaper?paperId=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8090",
-					"path": [
-						"exam",
-						"fetchblankpaper"
-					],
-					"query": [
-						{
-							"key": "paperId",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8090/grade/broadcastscores?examId=1",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8090/grade/broadcastscores?examId=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8090",
-					"path": [
-						"grade",
-						"broadcastscores"
-					],
-					"query": [
-						{
-							"key": "examId",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8090/grade/viewanswers?studentId=1&examId=1",
+			"name": "http://localhost:8090/paper/viewanswers?studentId=1&examId=1",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -210,7 +214,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8090/grade/addbonus",
+			"name": "http://localhost:8090/grade/broadcastscores",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -222,7 +226,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"examId\": 1,\r\n  \"expression\": \"10 + 1.2 * 1 +\"\r\n}",
+					"raw": "{\r\n  \"examId\": 1,\r\n  \"expression\": \"10 + 1.5 * 1 +\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "text"
@@ -230,7 +234,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8090/grade/addbonus",
+					"raw": "http://localhost:8090/grade/broadcastscores",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -238,7 +242,7 @@
 					"port": "8090",
 					"path": [
 						"grade",
-						"addbonus"
+						"broadcastscores"
 					]
 				}
 			},
